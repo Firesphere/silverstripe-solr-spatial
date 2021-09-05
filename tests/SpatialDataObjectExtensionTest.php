@@ -7,4 +7,8 @@ use SilverStripe\Dev\SapphireTest;
 class SpatialDataObjectExtensionTest extends SapphireTest
 {
 
+    public function testGetSpatial()
+    {
+
+    }
 }
