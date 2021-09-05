@@ -11,7 +11,7 @@ jobs:
       - image: ssmarco/php-solr:latest
         environment:
           - SS_DATABASE_SERVER=127.0.0.1
-          - SS_DATABASE_USERNAME=root
+          - SS_DATABASE_USERNAME=toor
           - SS_DATABASE_PASSWORD=ubuntu
           - SS_DATABASE_NAME=circle_test
           - SS_ENVIRONMENT_TYPE=test
@@ -39,8 +39,8 @@ jobs:
       - run: echo '{}' > composer.lock
       - restore_cache:
           keys:
-            - silverstripe-search-cache-{{ checksum "composer.lock" }}
-            - silverstripe-search-cache-
+            - silverstripe-spatial-cache-{{ checksum "composer.lock" }}
+            - silverstripe-spatial-cache-
       - run:
           name: Composer requirements
           command: |
@@ -48,7 +48,7 @@ jobs:
             composer update --no-progress
             composer vendor-expose
       - save_cache:
-          key: silverstripe-search-cache-{{ checksum "composer.lock" }}
+          key: silverstripe-spatial-cache-{{ checksum "composer.lock" }}
           paths:
             - vendor
             - app
@@ -60,7 +60,7 @@ jobs:
           command: |
             cp .circleci/.env.test ./.env
             cp .circleci/CircleCITestIndex.phpsrc app/src/CircleCITestIndex.php
-            cp .circleci/TestIndexTwo.yml app/_config/search.yml
+            cp .circleci/CircleCITestIndex.yml app/_config/search.yml
       - run: vendor/bin/sake dev/build flush=all skipannotation=true
       - run:
           name: Permission changes
@@ -133,7 +133,7 @@ jobs:
       - image: brettt89/silverstripe-web:7.1-platform
         environment:
           - SS_DATABASE_SERVER=127.0.0.1
-          - SS_DATABASE_USERNAME=root
+          - SS_DATABASE_USERNAME=toor
           - SS_DATABASE_PASSWORD=ubuntu
           - SS_DATABASE_NAME=circle_test
           - SS_ENVIRONMENT_TYPE=test
@@ -183,7 +183,7 @@ jobs:
           command: |
             cp .circleci/.env.test ./.env
             cp .circleci/CircleCITestIndex.phpsrc app/src/CircleCITestIndex.php
-            cp .circleci/TestIndexTwo.yml app/_config/search.yml
+            cp .circleci/CircleCITestIndex.yml app/_config/search.yml
       - run: git clone git@github.com:silverstripe-archive/silverstripe-fulltextsearch-localsolr.git localsolr
       - run:
           name: Start a solr4 instance

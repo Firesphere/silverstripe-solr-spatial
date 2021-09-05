@@ -1,0 +1,10 @@
+Firesphere\SolrSearch\Indexes\BaseIndex:
+  CircleCITestIndex:
+    Classes:
+      - SilverStripe\CMS\Model\SiteTree
+    FulltextFields:
+      - Content
+      - TestObject.Spatial
+Firesphere\SolrSearch\Services\SolrCoreService:
+  indexes:
+    - CircleCITestIndex
