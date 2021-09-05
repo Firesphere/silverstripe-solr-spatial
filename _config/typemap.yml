@@ -1,0 +1,8 @@
+---
+Name: SpatialSearch
+After:
+  - SolrSearch
+---
+Firesphere\SolrSearch\Helpers\Statics:
+  typemap:
+    Spatial: location
